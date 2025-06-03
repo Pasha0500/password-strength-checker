@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Password Strength Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 80px auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input[type="text"] {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      padding: 12px;
+      background: #0066cc;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #004d99;
+    }
+    .result {
+      margin-top: 2rem;
+      background: #f0f8ff;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .strength {
+      font-weight: bold;
+      color: #006400;
+    }
+    ul {
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Password Strength Checker</h1>
+    <form method="POST">
+      <input type="text" name="password" placeholder="Enter your password..." required />
+      <button type="submit">Check Strength</button>
+    </form>
+
+    {% if password %}
+    <div class="result">
+      <p>Password checked: <strong>{{ password }}</strong></p>
+      <p>Strength: <span class="strength">{{ strength }}</span></p>
+      {% if suggestions %}
+      <p>Suggestions:</p>
+      <ul>
+        {% for tip in suggestions %}
+          <li>{{ tip }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
